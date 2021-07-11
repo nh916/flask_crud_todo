@@ -7,10 +7,28 @@
                     <a class="nav-link" aria-current="page" href="{{ url_for('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('add_to_do') }}"><i class="fas fa-plus"></i> Add To Do</a>
+                    <a class="nav-link" href="{{ url_for('add_to_do') }}">
+                        <i class="fas fa-plus"></i>
+                        Add To Do
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('view_to_do') }}"><i class="fas fa-clipboard-list"></i> Add To Do</a>
+                    <a class="nav-link" href="{{ url_for('view_to_do') }}">
+                        <i class="fas fa-clipboard-list"></i>
+                        View To Do
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('view_to_do') }}">
+                        <i class="fas fa-pen"></i>
+                        Update To Do
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('view_to_do') }}">
+                        <i class="fas fa-trash-alt"></i>
+                        Delete To Do
+                    </a>
                 </li>
             </ul>
         </div>

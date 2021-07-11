@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Update Tasks {% endblock %}
+
+{% block body %}
+
+    <main class="container">
+        <h1>Update Task</h1>
+
+
+        <form action="#" method="POST" class="form-control">
+            <div class="form-row">
+
+                <label for="create-task" class="form-label">Add TO DO</label>
+                <br>
+                <input type="text" class="col-lg-6 col-md-6 col-sm-12" id="create-task" name="todo_task"
+                       placeholder="Add +">
+                <button type="submit" class="btn btn-primary my-button">
+                    <i class="fas fa-trash-alt"></i>
+                    Add
+                </button>
+
+            </div>
+        </form>
+    </main>
+
+{% endblock %}
