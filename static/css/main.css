@@ -1,0 +1,15 @@
+html, body {
+    margin: 0;
+}
+
+main {
+    padding: 1rem;
+}
+
+.my-button {
+    margin: 1rem;
+}
+
+form {
+    margin-top: 5rem;
+}
