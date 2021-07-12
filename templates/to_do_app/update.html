@@ -1,23 +1,33 @@
 {% extends 'base.html' %}
 
-{% block title %} Update Tasks {% endblock %}
+{% block title %} Add Tasks {% endblock %}
 
 {% block body %}
 
     <main class="container">
-        <h1>Update Task</h1>
+        <h1>Add Tasks</h1>
 
 
-        <form action="#" method="POST" class="form-control">
+        <form method="POST" class="form-control">
             <div class="form-row">
 
-                <label for="create-task" class="form-label">Add TO DO</label>
-                <br>
-                <input type="text" class="col-lg-6 col-md-6 col-sm-12" id="create-task" name="todo_task"
-                       placeholder="Add +">
+                <label for="create-task" class="form-label">Add TO DO</label> <br>
+                <input type="text" autocomplete="off" class="col-lg-6 col-md-6 col-sm-12" id="create-task"
+                       name="todo_task"
+                       placeholder="Add +" value="{{ the_todo.task }}">
+
+                <br><br>
+
+                <label for="task-status"></label>
+                <select id="task-status" class="form-select col" name="todo_status" aria-label="Default select example">
+                    <option selected disabled>Status</option>
+                    <option style="background-color: green" value="Not Started">Not Started</option>
+                    <option value="Working">Working</option>
+                    <option value="Finished">Finished!</option>
+                </select>
+
                 <button type="submit" class="btn btn-primary my-button">
-                    <i class="fas fa-trash-alt"></i>
-                    Add
+                    <i class="fas fa-edit"></i> Submit
                 </button>
 
             </div>

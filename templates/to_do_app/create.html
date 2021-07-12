@@ -12,7 +12,18 @@
             <div class="form-row">
 
                 <label for="create-task" class="form-label">Add TO DO</label> <br>
-                <input type="text" class="col-lg-6 col-md-6 col-sm-12" id="create-task" name="todo_task" placeholder="Add +">
+                <input type="text" class="col-lg-6 col-md-6 col-sm-12" id="create-task" name="todo_task"
+                       placeholder="Add +">
+
+                <br><br>
+
+                <select class="form-select col" name="todo_status" aria-label="Default select example">
+                    <option selected disabled>Status</option>
+                    <option value="Not Started">Not Started</option>
+                    <option value="Working">Working</option>
+                    <option value="Finished">Finished!</option>
+                </select>
+
                 <button type="submit" class="btn btn-primary my-button">
                     <i class="fas fa-plus"></i> Add
                 </button>

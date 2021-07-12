@@ -2,7 +2,6 @@ import datetime
 
 from flask import Flask, request, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, DateTime
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -15,6 +14,7 @@ db = SQLAlchemy(app)
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
     task = db.Column(db.VARCHAR(100), nullable=False)
+    status = db.Column(db.VARCHAR(11), nullable=False, default='Not Started')
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
     def __repr__(self):
@@ -32,10 +32,18 @@ def home():
 @app.route('/add-to-do', methods=["GET", "POST"])
 def add_to_do():
     if request.method == 'POST':
-        todo_task = request.form.get('todo_task')
-        todo_for_db = Todo(task=todo_task)
-        db.session.add(todo_for_db)
-        db.session.commit()
+        try:
+            todo_task = request.form.get('todo_task')
+            todo_task_status = request.form.get('todo_status')
+
+            todo_for_db = Todo(task=todo_task, status=todo_task_status)
+
+            db.session.add(todo_for_db)
+            db.session.commit()
+
+        except Exception:
+            print(Exception)
+            return 'There was an error'
 
         return redirect(url_for('view_to_do'))
 
@@ -44,22 +52,39 @@ def add_to_do():
 
 @app.route('/view-to-do')
 def view_to_do():
-    context = {
-        'task': 1,
-        'date': 1,
-        'id': 1
-    }
-    return render_template('to_do_app/read.html')
+    try:
+        all_todos_query = Todo.query.order_by(Todo.date_created).all()
+
+    except IndexError:
+        return 'Please insert data first'
+
+    return render_template('to_do_app/read.html', all_todos_query=all_todos_query)
 
 
-@app.route('/update-to-do')
-def update_to_do():
-    pass
+@app.route('/update-to-do/<id_number>', methods=['GET', 'POST'])
+def update_to_do(id_number):
+    if request.method == 'POST':
+        original_task = db.session.query(Todo).get(id_number)
+
+        original_task.task = request.form.get('todo_task')
+        print(original_task)
+        original_task.status = request.form.get('todo_status')
+        db.session.commit()
+
+        return redirect(url_for('view_to_do'))
+
+    if request.method == 'GET':
+        the_todo = db.session.query(Todo).get_or_404(id_number)
+
+        return render_template('to_do_app/update.html', the_todo=the_todo)
 
 
-@app.route('/delete-to-do')
-def delete_to_do():
-    pass
+@app.route('/delete-to-do/<id_number>', methods=['GET', 'POST'])
+def delete_to_do(id_number):
+    if request.method == 'POST':
+        pass
+
+    # return http 200 or 500 and show that on the frontend
 
 
 if __name__ == "__main__":

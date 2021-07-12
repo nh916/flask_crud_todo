@@ -11,20 +11,44 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Task Name</th>
                     <th scope="col">Task</th>
-                    <th scope="col">Date Added</th>
+                    <th scope="col">Time Created</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+
                 </tr>
                 </thead>
+
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td class="warning">Working on it</td>
-                </tr>
+                {% for row in all_todos_query %}
+
+                    <tr>
+                        <th>{{ row.id }}</th>
+                        <td>{{ row.task }}</td>
+                        <td>{{ row.date_created }}</td>
+
+                        {% if row.status == 'Not Started' %}
+                            <td>{{ row.status }}</td>
+
+                        {% elif row.status == 'Working' %}
+                            <td style="color: yellow">{{ row.status }}</td>
+
+                        {% elif row.status == 'Finished' %}
+                            <td style="color: green;">{{ row.status }}</td>
+
+                        {% endif %}
+                        <td>
+                            <a href="{{ url_for('update_to_do', id_number = row.id) }}">
+                                <i class="fas fa-edit"></i>
+                                Update
+                            </a>
+                        </td>
+                        <td>delete</td>
+                    </tr>
+
+                {% endfor %}
+
                 </tbody>
             </table>
         </div>
