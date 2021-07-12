@@ -13,3 +13,15 @@ main {
 form {
     margin-top: 5rem;
 }
+
+th {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+.my-badge-styles {
+    font-size: 0.9rem;
+}

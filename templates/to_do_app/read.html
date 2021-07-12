@@ -10,7 +10,7 @@
             <table class="table table-dark">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Number</th>
                     <th scope="col">Task</th>
                     <th scope="col">Time Created</th>
                     <th scope="col">Status</th>
@@ -24,27 +24,40 @@
                 {% for row in all_todos_query %}
 
                     <tr>
-                        <th>{{ row.id }}</th>
-                        <td>{{ row.task }}</td>
-                        <td>{{ row.date_created }}</td>
+                        <th class="id_{{ row.id }}">{{ row.id }}</th>
+                        <td class="id_{{ row.id }}">{{ row.task }}</td>
+                        <td class="id_{{ row.id }}">{{ row.date_created }}</td>
 
                         {% if row.status == 'Not Started' %}
-                            <td>{{ row.status }}</td>
+                            <td class="id_{{ row.id }}">
+                                <span class="badge rounded-pill bg-secondary my-badge-styles">{{ row.status }}</span>
+                            </td>
 
                         {% elif row.status == 'Working' %}
-                            <td style="color: yellow">{{ row.status }}</td>
+                            <td class="id_{{ row.id }}" style="color: yellow">
+                                <span class="badge rounded-pill bg-warning my-badge-styles">{{ row.status }}</span>
+                            </td>
 
                         {% elif row.status == 'Finished' %}
-                            <td style="color: green;">{{ row.status }}</td>
+                            <td class="id_{{ row.id }}" style="color: green;">
+                                <span class="badge rounded-pill bg-success my-badge-styles">{{ row.status }}</span>
+                            </td>
 
                         {% endif %}
-                        <td>
-                            <a href="{{ url_for('update_to_do', id_number = row.id) }}">
+                        <td class="id_{{ row.id }}">
+                            <a class="btn btn-primary id_{{ row.id }}"
+                               href="{{ url_for('update_to_do', id_number = row.id) }}">
                                 <i class="fas fa-edit"></i>
                                 Update
                             </a>
                         </td>
-                        <td>delete</td>
+                        <td class="id_{{ row.id }}">
+                            <button class="btn btn-danger id_{{ row.id }}" value="{{ row.id }}"
+                                    onclick="deleteTask(this.value)">
+                                <i class="fas fa-trash-alt"></i>
+                                Delete
+                            </button>
+                        </td>
                     </tr>
 
                 {% endfor %}
@@ -52,7 +65,9 @@
                 </tbody>
             </table>
         </div>
-
     </main>
+
+
+    <script src="{{ url_for('static', filename='js/delete_ajax.js') }}"></script>
 
 {% endblock %}
