@@ -23,36 +23,36 @@
                 <tbody>
                 {% for row in all_todos_query %}
 
-                    <tr>
-                        <th class="id_{{ row.id }}">{{ row.id }}</th>
-                        <td class="id_{{ row.id }}">{{ row.task }}</td>
-                        <td class="id_{{ row.id }}">{{ row.date_created }}</td>
+                    <tr id="id_{{ row.id }}">
+                        <th>{{ row.id }}</th>
+                        <td>{{ row.task }}</td>
+                        <td>{{ row.date_created }}</td>
 
                         {% if row.status == 'Not Started' %}
-                            <td class="id_{{ row.id }}">
+                            <td>
                                 <span class="badge rounded-pill bg-secondary my-badge-styles">{{ row.status }}</span>
                             </td>
 
                         {% elif row.status == 'Working' %}
-                            <td class="id_{{ row.id }}" style="color: yellow">
+                            <td style="color: yellow">
                                 <span class="badge rounded-pill bg-warning my-badge-styles">{{ row.status }}</span>
                             </td>
 
                         {% elif row.status == 'Finished' %}
-                            <td class="id_{{ row.id }}" style="color: green;">
+                            <td style="color: green;">
                                 <span class="badge rounded-pill bg-success my-badge-styles">{{ row.status }}</span>
                             </td>
 
                         {% endif %}
-                        <td class="id_{{ row.id }}">
-                            <a class="btn btn-primary id_{{ row.id }}"
+                        <td>
+                            <a class="btn btn-primary"
                                href="{{ url_for('update_to_do', id_number = row.id) }}">
-                                <i class="fas fa-edit"></i>
-                                Update
+                            <i class="fas fa-edit"></i>
+                            Update
                             </a>
                         </td>
-                        <td class="id_{{ row.id }}">
-                            <button class="btn btn-danger id_{{ row.id }}" value="{{ row.id }}"
+                        <td>
+                            <button class="btn btn-danger" value="{{ row.id }}"
                                     onclick="deleteTask(this.value)">
                                 <i class="fas fa-trash-alt"></i>
                                 Delete
@@ -70,4 +70,8 @@
 
     <script src="{{ url_for('static', filename='js/delete_ajax.js') }}"></script>
 
+    {# axios cdn #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+            integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% endblock %}
