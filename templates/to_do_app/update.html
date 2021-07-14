@@ -20,14 +20,15 @@
 
                 <label for="task-status"></label>
                 <span>Status</span>
-                <select id="task-status" class="form-select col" name="todo_status" aria-label="Default select example">
-                    <option style="background-color: green" value="Not Started">Not Started</option>
-                    <option value="Working">Working</option>
-                    <option selected value="Finished">Finished!</option>
+                <select id="task-status" class="form-select col" name="todo_status" aria-label="Select status of task">
+                    <option value="Not Started">Not Started</option>
+                    <option style="background-color: yellow" value="Working">Working</option>
+                    <option style="background-color: green" selected value="Finished">Finished!</option>
                 </select>
 
                 <button type="submit" class="btn btn-primary my-button">
-                    <i class="fas fa-edit"></i> Submit
+                    <i class="fas fa-edit"></i>
+                    Submit
                 </button>
 
             </div>

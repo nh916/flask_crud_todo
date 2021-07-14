@@ -8,7 +8,7 @@
         <h1>Add Tasks</h1>
 
 
-        <form action="#" method="POST" class="form-control">
+        <form method="POST" class="form-control">
             <div class="form-row">
 
                 <label for="create-task" class="form-label">Add TO DO</label> <br>
@@ -17,15 +17,16 @@
 
                 <br><br>
 
-                <select class="form-select col" name="todo_status" aria-label="Default select example">
+                <select class="form-select col" name="todo_status" aria-label="Select status of task">
                     <option selected disabled>Status</option>
                     <option value="Not Started">Not Started</option>
-                    <option value="Working">Working</option>
-                    <option value="Finished">Finished!</option>
+                    <option style="background-color: yellow" value="Working">Working</option>
+                    <option style="background-color: green" value="Finished">Finished!</option>
                 </select>
 
                 <button type="submit" class="btn btn-primary my-button">
-                    <i class="fas fa-plus"></i> Add
+                    <i class="fas fa-plus"></i>
+                    Add
                 </button>
 
             </div>
